@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <meta name="description" content="Skaidrojošā un sinonīmu vārdnīca: vairāk nekā 300 000 šķirkļu un vairāk nekā 115 000 sinonīmu."/>
+    <meta name="keywords" content="vārdnīca, skaidrojošā vārdnīca, sinonīmu vārdnīca, tēzaurs, sinonīmi, vārdi, vietvārdi, apvidvārdi, latviešu, valoda, morfoloģija, Latvian, lexicon, vocabulary, dictionary, thesaurus, morphology"/>
+
+    <title>Tēzaurs</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,600,300&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css"/>
+    <link href="tooltipster.css" rel="stylesheet" type="text/css"/>
+    <link href="tezaurs.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="shortcut icon" href="img/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="144x144" href="img/favicon-144x144.png"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192x192.png"/>
+    <link rel="apple-touch-icon" href="img/favicon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="192x192" href="img/favicon-192x192.png"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="jquery.address.min.js"></script>
+    <script src="modernizr.custom.js"></script>
+    <script src="jquery.tooltipster.min.js"></script>
+    <script src="morphologytables.js"></script>
+    <script src="tezaurs.js"></script>
+</head>
+<body>
+    <div id="header">
+        <table><tr>
+            <td><a href="http://tezaurs.lv/"><img src="img/Tezaurs.svg" id="Tezaurs_SVG" width="325" height="55" alt="Tēzaurs"/></a></td>
+            <td style="width : 100%;">
+				<noscript>
+					<div style="margin : 0 20px 20px 20px ; font-size: 0.8em ; color : red">
+						Jūsu pārlūkprogrammai ir atslēgts <i>JavaScript</i> atbalsts, kas nepieciešams <i>Tēzaurs.lv</i> pilnvērtīgai darbībai (t.sk. locījumu tabulu un korpusa piemēru demonstrēšanai), tāpēc Jums tiek piedāvāta <i>Tēzaurs.lv</i> vienkāršota versija.
+						Instrukcija, kā ieslēgt <i>JavaScript</i>, ir atrodama <a href="http://www.enable-javascript.com/" target="_blank">šeit</a>.
+					</div>
+                	<form id="searchForm_alt" class="form-search" action="/api/searchEntry" style="margin-bottom : 36px;">
+                    	<div class="form-search-wrapper">
+                        	<div class="form-search-field-wrapper">
+                            	<table><tr>
+                                	<td style="width : 100%"><input type="text" name="w" class="form-search-field"/></td>
+                                	<td></td>
+                            	</tr></table>
+                        	</div>
+                        	<input type="submit" class="form-search-submit" value=""/>
+                    	</div>
+                	</form>
+				</noscript>
+				<div style="visibility : hidden" id="jsonly">
+		            <form id="searchForm" class="form-search">
+		                <div class="form-search-wrapper">
+		                    <div class="form-search-field-wrapper">
+		                        <table><tr>
+		                            <td style="width : 100%"><input type="text" name="w" class="form-search-field" id="searchField"/></td>
+		                            <td><img src="img/keyboard.svg" id="keyboard_SVG" width="29" height="20" class="form-search-keyboard img-hover" alt="Ekrāna tastatūra"/></td>
+		                        </tr></table>
+		                    </div>
+		                    <input type="submit" class="form-search-submit" value=""/>
+		                </div>
+		            </form>
+		            <div id="keyboard">
+		                <div class="key" data-letter="ā">Ā</div>
+		                <div class="key" data-letter="č">Č</div>
+		                <div class="key" data-letter="ē">Ē</div>
+		                <div class="key" data-letter="ģ">Ģ</div>
+		                <div class="key" data-letter="ī">Ī</div>
+		                <div class="key" data-letter="ķ">Ķ</div>
+		                <div class="key" data-letter="ļ">Ļ</div>
+		                <div class="key" data-letter="ņ">Ņ</div>
+		                <div class="key" data-letter="š">Š</div>
+		                <div class="key" data-letter="ū">Ū</div>
+		                <div class="key" data-letter="ž">Ž</div>
+		            </div>
+				</div>
+				<script>document.getElementById('jsonly').style.visibility='visible';</script>
+            </td>
+            <td>
+                <div class="infoTitle"><span class="infoVers">Rudens versija</span>&nbsp;&nbsp;2018</div>
+                <div class="infoMore"><span class="infoEmph">301 540</span>&nbsp;&nbsp;šķirkļi</div>
+                <div class="infoMore"><span class="infoEmph">119 185</span>&nbsp;&nbsp;sinonīmu norādes</div>
+            </td>
+        </tr></table>
+    </div>
+
+    <div id="main">
+        <table><tr>
+            <td style="vertical-align : top">
+                <div id="searchResults"></div>
+            </td>
+            <td style="vertical-align : top ; width : 100%">
+                <div id="mainContent"></div>
+            </td>
+            <td style="vertical-align : top">
+                <div id="sideNotes"></div>
+            </td>
+        </tr></table>
+    </div>
+
+    <div id="footer">
+        <table><tr>
+            <td>
+                <table style="width : auto ; margin-bottom : 1em"><tr>
+                    <td><a href="http://lu.lv"><img src="img/LU.svg" id="LU_SVG" height="49" class="img-hover" alt="Latvijas Universitāte"/></a></td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td><a href="http://lumii.lv"><img src="img/MII.svg" id="MII_SVG" height="45" class="img-hover" alt="Matemātikas un informātikas institūts"/></a></td>
+                    <td>&nbsp;&nbsp;&nbsp;</td>
+                    <td style="width : 100%"><a href="http://ailab.lv"><img src="img/AILab.svg" id="AILab_SVG" height="45" class="img-hover" alt="Mākslīgā intelekta laboratorija"/></a></td>
+                </tr></table>
+                <div class="footnote">Vārdnīcu sastādījis Andrejs Spektors</div>
+                <div class="footnote">Mākslīgā intelekta laboratorija, 2009&ndash;2018</div>
+            </td>
+            <td style="width : 100% ; padding : 0 20px">
+                <table style="width : auto ; margin : 0 20px 0 20px"><tr>
+                    <td>
+                        <div><a class="menu footnote blank" href="#/sv/tēzaurs">Kas ir tēzaurs</a></div>
+                        <div><a class="menu footnote blank" href="#/avoti">Izmantotie avoti</a></div>
+                        <div><a class="menu footnote blank" href="https://github.com/LUMII-AILab/Tezaurs" target="_blank">Atvērtie dati</a></div>
+                        <div><span style="color : #9E9E9E" class="menu footnote" data-href="http://api.tezaurs.lv">Tēzaura API</span></div>
+                    </td>
+                    <td style="width : 20px"></td>
+                    <td>
+                        <div><span style="color : #9E9E9E" class="menu footnote" data-href="http://m.tezaurs.lv">Mobilā versija</span></div>
+                        <div><span style="color : #9E9E9E" class="menu footnote blank" data-href="#/statistika">Statistika</span></div>
+                        <div><a class="menu footnote blank" href="#/vardnicas">Citas vārdnīcas</a></div>
+                        <div><a class="menu footnote blank" href="mailto:tezaurs@ailab.lv">Kontakti</a></div>
+                    </td>
+                </tr></table>
+            </td>
+            <td style="text-align : center">
+                <div class="footnote">Seko mums</div>
+                <table style="width : auto"><tr>
+                    <td><a href="https://twitter.com/AILab_lv"><img src="img/Twitter.png" class="img-hover" alt="Twitter"/></a></td>
+                    <td style="width : 1em"></td>
+                    <td><!--<a href="https://www.facebook.com/ailablv">--><img src="img/Facebook.png" alt="Facebook"/><!--</a>--></td>
+                </tr></table>
+            </td>
+        </tr></table>
+    </div>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-2563945-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+</body>
+</html>
+
