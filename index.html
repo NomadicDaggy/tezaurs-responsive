@@ -5,6 +5,8 @@
 
     <meta name="description" content="Skaidrojošā un sinonīmu vārdnīca: vairāk nekā 300 000 šķirkļu un vairāk nekā 115 000 sinonīmu."/>
     <meta name="keywords" content="vārdnīca, skaidrojošā vārdnīca, sinonīmu vārdnīca, tēzaurs, sinonīmi, vārdi, vietvārdi, apvidvārdi, latviešu, valoda, morfoloģija, Latvian, lexicon, vocabulary, dictionary, thesaurus, morphology"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <title>Tēzaurs</title>
 
@@ -30,8 +32,8 @@
 <body>
     <div id="header">
         <table><tr>
-            <td><a href="http://tezaurs.lv/"><img src="img/Tezaurs.svg" id="Tezaurs_SVG" width="325" height="55" alt="Tēzaurs"/></a></td>
-            <td style="width : 100%;">
+            <td class="header-col logo"><a href="http://tezaurs.lv/"><img src="img/Tezaurs.svg" id="Tezaurs_SVG" alt="Tēzaurs"/></a></td>
+            <td class="header-col" id="searchBar">
 				<noscript>
 					<div style="margin : 0 20px 20px 20px ; font-size: 0.8em ; color : red">
 						Jūsu pārlūkprogrammai ir atslēgts <i>JavaScript</i> atbalsts, kas nepieciešams <i>Tēzaurs.lv</i> pilnvērtīgai darbībai (t.sk. locījumu tabulu un korpusa piemēru demonstrēšanai), tāpēc Jums tiek piedāvāta <i>Tēzaurs.lv</i> vienkāršota versija.
@@ -41,7 +43,7 @@
                     	<div class="form-search-wrapper">
                         	<div class="form-search-field-wrapper">
                             	<table><tr>
-                                	<td style="width : 100%"><input type="text" name="w" class="form-search-field"/></td>
+                                	<td><input type="text" name="w" class="form-search-field"/></td>
                                 	<td></td>
                             	</tr></table>
                         	</div>
@@ -77,42 +79,44 @@
 				</div>
 				<script>document.getElementById('jsonly').style.visibility='visible';</script>
             </td>
-            <td>
-                <div class="infoTitle"><span class="infoVers">Rudens versija</span>&nbsp;&nbsp;2018</div>
-                <div class="infoMore"><span class="infoEmph">301 540</span>&nbsp;&nbsp;šķirkļi</div>
-                <div class="infoMore"><span class="infoEmph">119 185</span>&nbsp;&nbsp;sinonīmu norādes</div>
+            <td class="header-col" id="version">
+                <div class="infoTitle"><span class="infoVers">Ziemas versija</span>&nbsp;&nbsp;2019</div>
+                <div class="infoMore"><span class="infoEmph">305 300</span>&nbsp;&nbsp;šķirkļi</div>
+                <div class="infoMore"><span class="infoEmph">121 427</span>&nbsp;&nbsp;sinonīmu norādes</div>
             </td>
         </tr></table>
     </div>
 
     <div id="main">
-        <table><tr>
-            <td style="vertical-align : top">
-                <div id="searchResults"></div>
-            </td>
-            <td style="vertical-align : top ; width : 100%">
-                <div id="mainContent"></div>
-            </td>
-            <td style="vertical-align : top">
-                <div id="sideNotes"></div>
-            </td>
-        </tr></table>
+        <table id="mainTable">
+            <tr>
+                <td id="searchCol">
+                    <div id="searchResults"></div>
+                </td>
+                <td id="mainCol">
+                    <div id="mainContent"></div>
+                </td>
+                <td id="noteCol">
+                    <div id="sideNotes"></div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div id="footer">
         <table><tr>
-            <td>
-                <table style="width : auto ; margin-bottom : 1em"><tr>
-                    <td><a href="http://lu.lv"><img src="img/LU.svg" id="LU_SVG" height="49" class="img-hover" alt="Latvijas Universitāte"/></a></td>
+            <td class="footer-col">
+                <table id="footerSVGTable"><tr>
+                    <td><a href="http://lu.lv"><img src="img/LU.svg" id="LU_SVG" class="img-hover" alt="Latvijas Universitāte"/></a></td>
                     <td>&nbsp;&nbsp;</td>
-                    <td><a href="http://lumii.lv"><img src="img/MII.svg" id="MII_SVG" height="45" class="img-hover" alt="Matemātikas un informātikas institūts"/></a></td>
+                    <td><a href="http://lumii.lv"><img src="img/MII.svg" id="MII_SVG" class="img-hover" alt="Matemātikas un informātikas institūts"/></a></td>
                     <td>&nbsp;&nbsp;&nbsp;</td>
-                    <td style="width : 100%"><a href="http://ailab.lv"><img src="img/AILab.svg" id="AILab_SVG" height="45" class="img-hover" alt="Mākslīgā intelekta laboratorija"/></a></td>
+                    <td><a href="http://ailab.lv"><img src="img/AILab.svg" id="AILab_SVG" class="img-hover" alt="Mākslīgā intelekta laboratorija"/></a></td>
                 </tr></table>
                 <div class="footnote">Vārdnīcu sastādījis Andrejs Spektors</div>
-                <div class="footnote">Mākslīgā intelekta laboratorija, 2009&ndash;2018</div>
+                <div class="footnote">Mākslīgā intelekta laboratorija, 2009&ndash;2019</div>
             </td>
-            <td style="width : 100% ; padding : 0 20px">
+            <td class="footer-col" id="footerNavMenu">
                 <table style="width : auto ; margin : 0 20px 0 20px"><tr>
                     <td>
                         <div><a class="menu footnote blank" href="#/sv/tēzaurs">Kas ir tēzaurs</a></div>
@@ -129,9 +133,9 @@
                     </td>
                 </tr></table>
             </td>
-            <td style="text-align : center">
+            <td class="footer-col" id="follow">
                 <div class="footnote">Seko mums</div>
-                <table style="width : auto"><tr>
+                <table><tr>
                     <td><a href="https://twitter.com/AILab_lv"><img src="img/Twitter.png" class="img-hover" alt="Twitter"/></a></td>
                     <td style="width : 1em"></td>
                     <td><!--<a href="https://www.facebook.com/ailablv">--><img src="img/Facebook.png" alt="Facebook"/><!--</a>--></td>
