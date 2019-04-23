@@ -1,7 +1,7 @@
 var delta = 20;
 var debug = window.location.protocol == 'file:';
-var api_url = '://api.tezaurs.lv/v1';
-if (debug) api_url = ':/localhost:8182/v1';
+var api_url = 'http://api.tezaurs.lv/v1';
+if (debug) api_url = 'http:/localhost:8182/v1';
 
 function resizeMain() {
 	/*var delta = 20 + $('#header').outerHeight() + $('#footer').outerHeight();
@@ -161,7 +161,7 @@ function loadContent(doc, word) {
 			});
 
 			// Reset search results
-			$('#searchResults').load('://tezaurs.lv/api/searchEntry?w=' + word + ' #doc', function() {
+			$('#searchResults').load('http://tezaurs.lv/api/searchEntry?w=' + word + ' #doc', function() {
 				if ($('#alternatives').length == 0) $('#exactMatch').hide();
 
 				$('.word').each(function() {
@@ -180,7 +180,7 @@ function loadContent(doc, word) {
 			$('#mainContent').append('<div id="examples"></div>');
 
 			/*
-            $.get('://ezis.ailab.lv:8182/phonetic_transcriber/' + word + '?phoneme_set=ipa', function(data) {
+            $.get('http://ezis.ailab.lv:8182/phonetic_transcriber/' + word + '?phoneme_set=ipa', function(data) {
                 var phonetic_word = data.replace(/ /g, '');
                 if (phonetic_word != 'Unrecognizedsymbolsinstring!') {
                     $('#pronunciation').html(
@@ -193,7 +193,7 @@ function loadContent(doc, word) {
 				// TODO add 'pronunc' and 'vprefix'
             });
 
-            $.get('://tezaurs.lv/api/pronounce.jsp?word=' + word, function(data) {
+            $.get('http://tezaurs.lv/api/pronounce.jsp?word=' + word, function(data) {
                 $('#tts').html(
                     '<audio controls="controls">' +
                         '<source src="' + data + '" type="audio/mpeg">' +
@@ -339,8 +339,8 @@ function loadContent(doc, word) {
 						"<div class='disclaimer'>Piemēri ir atlasīti automātiski un var būt neprecīzi.</div>";
 
 					if (more) {
-						// var bonito = "://bonito.korpuss.lv/bonito/run.cgi/first?corpname=LUMII_lidzsvarotais&iquery=" + word;
-						var bonito = '://nosketch.korpuss.lv/run.cgi/first?corpname=LVK2018&iquery=' + word;
+						// var bonito = "http://bonito.korpuss.lv/bonito/run.cgi/first?corpname=LUMII_lidzsvarotais&iquery=" + word;
+						var bonito = 'http://nosketch.korpuss.lv/run.cgi/first?corpname=LVK2018&iquery=' + word;
 						example_html +=
 							'<div class="example"><a href="' + bonito + '" target="_blank">Vairāk...</a></div>';
 					}
@@ -425,7 +425,7 @@ function loadContent(doc, word) {
 						comment: $('#feedbackText').val()
 					};
 
-					$.post('://tezaurs.lv/api/feedback', formData, function() {
+					$.post('http://tezaurs.lv/api/feedback', formData, function() {
 						if ($('#feedbackText').val().trim()) {
 							$('#feedbackResponse')
 								.html('<span class="status-ok">Paldies!</span>')
@@ -551,11 +551,11 @@ $.address.change(function(event) {
 		if (w[0].charAt(0) == '?') {
 			w[0] = w[0].substring(1);
 			var word = !isEncodedURIComponent(w[0]) ? encodeURIComponent(w[0]) : w[0];
-			loadResults('://tezaurs.lv/api/searchEntry?w=' + word);
+			loadResults('http://tezaurs.lv/api/searchEntry?w=' + word);
 		} else {
 			var word = !isEncodedURIComponent(w[0]) ? encodeURIComponent(w[0]) : w[0];
 			var query = 'hw=' + word + (w.length == 2 ? '&hom=' + w[1] : '');
-			loadContent('://tezaurs.lv/api/retrieveEntry?' + query, word);
+			loadContent('http://tezaurs.lv/api/retrieveEntry?' + query, word);
 		}
 	} else if (event.value != '/') {
 		loadContent(event.value.substring(1) + '.html', null);
