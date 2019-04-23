@@ -161,7 +161,7 @@ function loadContent(doc, word) {
 			});
 
 			// Reset search results
-			$('#searchResults').load('http://tezaurs.lv/api/searchEntry?w=' + word + ' #doc', function() {
+			$('#searchResults').load('https://tezaurs.lv/api/searchEntry?w=' + word + ' #doc', function() {
 				if ($('#alternatives').length == 0) $('#exactMatch').hide();
 
 				$('.word').each(function() {
