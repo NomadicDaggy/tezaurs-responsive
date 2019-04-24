@@ -764,6 +764,7 @@ span.inflection {
 	}
 
 	.footer-col,
+	.hideOnDesktop,
 	#footerSVGTable,
 	#footerNavMenu td div,
 	#footerNavMenu table,
@@ -803,5 +804,9 @@ span.inflection {
 
 	#footerNavMenu .hideOnMobile {
 		display: none;
+	}
+
+	.hideOnDesktop {
+		display: table;
 	}
 }
