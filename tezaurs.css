@@ -593,6 +593,7 @@ input::-webkit-focus-inner {
 }
 
 #toggle_Idioms,
+.toggle_Subsenses,
 #toggle_Morphology,
 #toggle_Examples {
 	vertical-align: middle;

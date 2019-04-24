@@ -133,6 +133,35 @@ function loadContent(doc, word) {
 				}
 			});
 
+			if ($(window).width() < 769) {
+				$('.sv_NO').append(
+					' <img src="img/expand.svg" class="toggle_Subsenses expand_SVG" width="14" height="14" alt="+"/>'
+				);
+
+				$('.sv_Subsense').hide();
+				$('.sv_MWEs').hide();
+
+				$(document).ready(function(e) {
+					$('.sv_Sense').on('click', '.sv_NO', function(e) {
+						$(e.delegateTarget).find('.sv_Subsense').toggle();
+						$(e.delegateTarget).find('.sv_MWEs').toggle();
+
+						if (
+							$(e.delegateTarget).find('.sv_Subsense').is(':hidden') ||
+							$(e.delegateTarget).find('.sv_MWEs').is(':hidden')
+						) {
+							$(e.delegateTarget).find('.collapse_SVG').attr('src', 'img/expand.svg');
+							$(e.delegateTarget).find('.collapse_SVG').attr('alt', '-');
+							$(e.delegateTarget).find('.collapse_SVG').attr('class', 'toggle_Subsenses expand_SVG');
+						} else {
+							$(e.delegateTarget).find('.expand_SVG').attr('src', 'img/collapse.svg');
+							$(e.delegateTarget).find('.expand_SVG').attr('alt', '-');
+							$(e.delegateTarget).find('.expand_SVG').attr('class', 'toggle_Subsenses collapse_SVG');
+						}
+					});
+				});
+			}
+
 			$('.sv_Section', '.sv_Idioms').append(
 				' <img src="img/expand.svg" id="toggle_Idioms" class="expand_SVG" width="14" height="14" alt="+"/>'
 			);
