@@ -185,6 +185,11 @@ a.menu:active {
 	padding: 0 20px;
 }
 
+#footerNavMenu table {
+	width: auto;
+	margin: 0 20px 0 20px;
+}
+
 #follow {
 	text-align: center;
 }
@@ -756,6 +761,7 @@ span.inflection {
 	.footer-col,
 	#footerSVGTable,
 	#footerNavMenu td div,
+	#footerNavMenu table,
 	#follow table {
 		margin-left: auto;
 		margin-right: auto;
@@ -773,14 +779,24 @@ span.inflection {
 	#footerNavMenu {
 		width: 100%;
 		padding: 10px 0;
-		font-size: 12pt;
+		font-size: 14pt;
 	}
 
 	#footerNavMenu td {
-		width: 50%;
+		width: 100%;
+		display: inline-block;
+		box-sizing: border-box;
 	}
 
 	#footerNavMenu td div {
 		text-align: center;
+	}
+
+	#footerNavMenu tr {
+		display: table-row;
+	}
+
+	#footerNavMenu .hideOnMobile {
+		display: none;
 	}
 }
