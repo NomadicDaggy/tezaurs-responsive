@@ -3,39 +3,6 @@ var debug = window.location.protocol == 'file:';
 var api_url = 'http://api.tezaurs.lv/v1';
 if (debug) api_url = 'http:/localhost:8182/v1';
 
-function resizeMain() {
-	/*var delta = 20 + $('#header').outerHeight() + $('#footer').outerHeight();
-	if ($(window).width() > 768) {
-		var min = $(window).height() - delta;
-		//console.log('min:           ', min);
-		$('#searchResults').css('min-height', min);
-		$('#mainContent').css('min-height', min);
-		$('#sideNotes').css('min-height', min);
-	} /* else {
-		console.log('window.height: ', $(window).height());
-		console.log('header:        ', $('#header').outerHeight());
-		console.log('mainContent:   ', $('#mainContent').outerHeight());
-		console.log('searchResults: ', $('#searchResults').outerHeight());
-		console.log('footer:        ', $('#footer').outerHeight());
-		var min =
-			$(window).height() -
-			$('#header').outerHeight() -
-			$('#mainContent').outerHeight() -
-			$('#searchResults').outerHeight() -
-			$('#footer').outerHeight();
-		console.log('min:           ', min);
-		console.log('\n');
-		$('#searchResults').css('min-height', 0);
-		$('#mainContent').css('min-height', 0);
-
-		if (min > 0) {
-			$('#noteCol').css('min-height', min);
-		} else {
-			$('#noteCol').css('min-height', 0);
-		}
-	}*/
-}
-
 function isEncodedURIComponent(arg) {
 	return decodeURIComponent(arg) !== arg;
 }
@@ -565,15 +532,6 @@ $(document).ready(function() {
 		$('.expand_SVG').attr('src', 'img/expand.png');
 		$('.collapse_SVG').attr('src', 'img/collapse.png');
 	}
-});
-
-$(window).load(function() {
-	delta = $('#header').outerHeight() + $('#footer').outerHeight();
-	resizeMain();
-});
-
-$(window).resize(function() {
-	resizeMain();
 });
 
 $.address.change(function(event) {
