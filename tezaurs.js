@@ -99,10 +99,9 @@ function loadContent(doc, word) {
 					$(this).attr('href', '#/sv/?' + $(this).data('w'));
 				}
 			});
-
+			// mobile
 			if ($(window).width() < 769) {
-				console.log('small');
-				$('.sv_NO').append(
+				$('.sv_Sense:has(>div)>.sv_NO').append(
 					' <img src="img/expand.svg" class="toggle_Subsenses expand_SVG" width="14" height="14" alt="+"/>'
 				);
 
@@ -128,8 +127,6 @@ function loadContent(doc, word) {
 						}
 					});
 				});
-			} else {
-				console.log('large');
 			}
 
 			$('.sv_Section', '.sv_Idioms').append(
