@@ -733,8 +733,9 @@ span.inflection {
 	}
 
 	.expand_SVG,
-	.collapse_SVG {
-		height: calc(18px + (24 - 18)*(100vw - 320px)/(768 - 320));
+	.collapse_SVG,
+	#toggle_Morphology {
+		height: 1em;
 		width: auto;
 	}
 
@@ -767,6 +768,13 @@ span.inflection {
 		width: auto;
 		padding: 0.25em 1em 0 0;
 		text-align: left;
+	}
+
+	#pronunciation,
+	.morphology,
+	#examples {
+		margin-top: 1.5em;
+		font-size: 1em;
 	}
 
 	/* Side notes */
