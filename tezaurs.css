@@ -667,6 +667,9 @@ span.inflection {
 /* Mobile */
 
 @media all and (max-width: 768px) {
+	body {
+		font-size: calc(18px + (24 - 18)*(100vw - 320px)/(768 - 320));
+	}
 	/* Header */
 	#header {
 		padding: 0;
@@ -679,6 +682,11 @@ span.inflection {
 		display: inline-block;
 		box-sizing: border-box;
 	}
+
+	.logo {
+		padding: 15px 15px 5px 15px;
+	}
+
 	/* Header logo */
 	#Tezaurs_SVG {
 		display: block;
@@ -722,6 +730,18 @@ span.inflection {
 		width: 100%;
 		padding: 0 15px;
 		box-sizing: border-box;
+	}
+
+	.expand_SVG,
+	.collapse_SVG {
+		height: calc(18px + (24 - 18)*(100vw - 320px)/(768 - 320));
+		width: auto;
+	}
+
+	#twitterButton,
+	#feedbackButton {
+		height: auto;
+		width: auto;
 	}
 
 	/* Homonyms */
@@ -785,7 +805,7 @@ span.inflection {
 	#footerNavMenu {
 		width: 100%;
 		padding: 10px 0;
-		font-size: 14pt;
+		font-size: 1.6em;
 	}
 
 	#footerNavMenu td {
