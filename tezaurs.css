@@ -770,6 +770,11 @@ span.inflection {
 		text-align: left;
 	}
 
+	/* hide link to more examples on mobile */
+	#examples .example a {
+		display: none;
+	}
+
 	#pronunciation,
 	.morphology,
 	#examples {
