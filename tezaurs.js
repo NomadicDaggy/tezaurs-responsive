@@ -445,8 +445,9 @@ function loadContent(doc, word) {
 			});
 			// Feedback form - END
 		}
-
-		$('#searchField').select();
+		if ($(window).width() > 768) {
+			$('#searchField').select();
+		}
 	});
 }
 
@@ -477,19 +478,27 @@ function loadResults(doc) {
 			$(this).attr('href', '#/sv/' + hw + (hom == 0 ? '' : '/' + hom));
 		});
 
-		$('#searchField').select();
+		if ($(window).width() > 768) {
+			$('#searchField').select();
+		}
 	});
 }
 
 $(document).ready(function() {
 	$('#jsonly').css('visibility', 'visible');
 
-	$('#searchField').select();
+	if ($(window).width() > 768) {
+		$('#searchField').select();
+	}
 
 	$('#searchForm').submit(function() {
 		var w = $('#searchField').val();
 		$('#searchField').val('');
-		$('#searchField').select();
+		if ($(window).width() > 768) {
+			$('#searchField').select();
+		} else {
+			$('#searchField').blur();
+		}
 		$('#keyboard').hide();
 		$.address.value('sv/?' + w);
 		return false;
