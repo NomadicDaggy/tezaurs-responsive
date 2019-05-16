@@ -720,6 +720,10 @@ span.inflection {
 	}
 
 	/* Main body content */
+	#mainContent {
+		padding: 0;
+	}
+
 	#mainTable tr {
 		display: flex;
 		flex-direction: column;
@@ -751,10 +755,14 @@ span.inflection {
 	/* Homonyms */
 	#searchCol {
 		order: 2;
+		width: auto;
 	}
 
 	#searchResults {
 		min-height: 0px;
+		padding: 0;
+		margin: 1.5em 0 1.5em;
+		max-width: 235px;
 	}
 
 	/* Entry */
@@ -860,6 +868,10 @@ span.inflection {
 	#searchBar {
 		width: 50%;
 		margin-top: .17em;
+	}
+
+	#searchResults {
+		max-width: 50%;
 	}
 
 	/*
