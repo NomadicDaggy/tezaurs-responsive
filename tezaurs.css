@@ -739,6 +739,10 @@ span.inflection {
 		width: auto;
 	}
 
+	.toggle_Subsenses {
+		margin-bottom: 0.2em;
+	}
+
 	#twitterButton,
 	#feedbackButton {
 		height: auto;

@@ -61,7 +61,9 @@ function updateMorphotable(data, paradigm, pluralEntryWord, secondThirdConj, sel
 		var indent = parseFloat($('.case-indent').css('width'));
 		indent += parseFloat($('.case-indent').css('padding-right'));
 		$('.sub-indent').css('margin-left', indent);
-		$('.sv_Section').css('font-size', $('.sv_Entry').css('font-size'));
+		if ($(window).width() > 768) {
+			$('.sv_Section').css('font-size', $('.sv_Entry').css('font-size'));
+		}
 		$('.items', selector).hide();
 
 		$('#toggle_Morphology', selector).click(function() {
@@ -342,15 +344,15 @@ function loadContent(doc, word) {
 					}
 
 					$('#examples').html(
-						'<div class="sv_Section" style="font-size: 16px;"><span>Korpusa piemēri: </span>' +
+						'<div class="sv_Section"><span>Korpusa piemēri: </span>' +
 							'<img src="img/expand.svg" id="toggle_Examples" class="expand_SVG" width="14" height="14" alt="+"/></div>' +
 							'<div class="items">' +
 							example_html +
 							'</div>'
 					);
-
-					$('.sv_Section').css('font-size', $('.sv_Entry').css('font-size'));
-
+					if ($(window).width() > 768) {
+						$('.sv_Section').css('font-size', $('.sv_Entry').css('font-size'));
+					}
 					$('.items', '#examples').hide();
 					$('#toggle_Examples').click(function() {
 						// TODO: jāvispārina kā atsevišķa f-cija
