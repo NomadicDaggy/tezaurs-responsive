@@ -355,6 +355,55 @@ var MorphologyTables = (function() {
 		return result;
 	}
 
+	function formatVerbTenseTable(words, caption, tags) {
+		var result = '<table class="inflections"><thead>';
+
+		if (caption != null) {
+			result += '<tr>';
+			if (tags) {
+				result += '<th>&nbsp;</th>';
+			}
+			result +=
+				'<th colspan="2"><div class="sub-title" style="text-align:center;">' + caption + '</div></th></tr>';
+		}
+
+		result += '<tr>';
+
+		if (tags) {
+			result += '<th class="case-indent">&nbsp;</th>';
+		}
+
+		for (var num = 0; num < numbers_2.length; num++) {
+			result += '<th>' + numbers_2[num][SHORT] + '</th>';
+		}
+
+		result += '</tr></thead><tbody>';
+
+		for (var person = 1; person <= 3; person++) {
+			result += '<tr><th scope="row">' + person + '.&nbsp;pers.</th>';
+
+			for (var num = 0; num < numbers_3.length; num++) {
+				var key = 'Īstenības-' + caption + '-' + person + '-' + numbers_3[num][LONG];
+				var word = '';
+
+				if (words[key]) {
+					word = words[key];
+				} else if (((person == 1 || person == 2) && num != 2) || (person == 3 && num == 2)) {
+					word = '&mdash;';
+					// FIXME - kā smukāk realizēt, lai vajadzīgajiem un tikai vajadzīgajiem laukiem ieliek domuzīmes, ja tukši?
+				}
+
+				if (person != 3) {
+					result += '<td>' + word + '</td>';
+				} else if (word != '') {
+					result += '<td colspan="2" style="text-align:center">' + word + '</td>';
+				}
+			}
+		}
+
+		return result + '</tbody></table>';
+	}
+
 	function formatVerb(data) {
 		var words = {};
 
@@ -394,58 +443,68 @@ var MorphologyTables = (function() {
 			)
 				add_word(words, key, value);
 		}
-
-		var result = '<div class="sub-morphology">Īstenības izteiksme:';
-		result += '<table class="inflections">';
-		result += '<thead><tr><th>&nbsp;</th>';
-
-		for (var tense = 0; tense < tenses.length; tense++) {
-			result += '<th colspan="2"><div class="sub-title">' + tenses[tense][LONG] + '</div></th>';
-		}
-
-		result += '</tr><tr><th>&nbsp;</th>';
-
-		for (var tense = 0; tense < tenses.length; tense++) {
-			for (var num = 0; num < numbers_2.length; num++) {
-				result += '<th>' + numbers_2[num][SHORT] + '</th>';
-			}
-		}
-
-		result += '</tr></thead><tbody>';
-
-		for (var person = 1; person <= 3; person++) {
-			result += '<tr><th scope="row">' + person + '.&nbsp;pers.</th>';
+		if ($(window).width() > 768) {
+			var result = '<div class="sub-morphology">Īstenības izteiksme:';
+			result += '<table class="inflections">';
+			result += '<thead><tr><th>&nbsp;</th>';
 
 			for (var tense = 0; tense < tenses.length; tense++) {
-				var wordlist = [];
-
-				for (var num = 0; num < numbers_3.length; num++) {
-					var key = 'Īstenības-' + tenses[tense][LONG] + '-' + person + '-' + numbers_3[num][LONG];
-
-					if (words[key]) {
-						wordlist.push(words[key]);
-					} else if (((person == 1 || person == 2) && num != 2) || (person == 3 && num == 2)) {
-						wordlist.push('&mdash;');
-						// FIXME - kā smukāk realizēt, lai vajadzīgajiem un tikai vajadzīgajiem laukiem ieliek domuzīmes, ja tukši?
-					}
-				}
-
-				if (wordlist.length > 0) {
-					wordlist = wordlist.join('</td><td>');
-				} else {
-					wordlist = '&mdash;';
-				}
-
-				if (person == 3) {
-					result += '<td colspan="2" style="text-align:center">';
-				} else {
-					result += '<td>';
-				}
-				result += wordlist + '</td>';
+				result += '<th colspan="2"><div class="sub-title">' + tenses[tense][LONG] + '</div></th>';
 			}
-		}
 
-		result += '</tbody></table></div>';
+			result += '</tr><tr><th>&nbsp;</th>';
+
+			for (var tense = 0; tense < tenses.length; tense++) {
+				for (var num = 0; num < numbers_2.length; num++) {
+					result += '<th>' + numbers_2[num][SHORT] + '</th>';
+				}
+			}
+
+			result += '</tr></thead><tbody>';
+
+			for (var person = 1; person <= 3; person++) {
+				result += '<tr><th scope="row">' + person + '.&nbsp;pers.</th>';
+
+				for (var tense = 0; tense < tenses.length; tense++) {
+					var wordlist = [];
+
+					for (var num = 0; num < numbers_3.length; num++) {
+						var key = 'Īstenības-' + tenses[tense][LONG] + '-' + person + '-' + numbers_3[num][LONG];
+
+						if (words[key]) {
+							wordlist.push(words[key]);
+						} else if (((person == 1 || person == 2) && num != 2) || (person == 3 && num == 2)) {
+							wordlist.push('&mdash;');
+							// FIXME - kā smukāk realizēt, lai vajadzīgajiem un tikai vajadzīgajiem laukiem ieliek domuzīmes, ja tukši?
+						}
+					}
+
+					if (wordlist.length > 0) {
+						wordlist = wordlist.join('</td><td>');
+					} else {
+						wordlist = '&mdash;';
+					}
+
+					if (person == 3) {
+						result += '<td colspan="2" style="text-align:center">';
+					} else {
+						result += '<td>';
+					}
+					result += wordlist + '</td>';
+				}
+			}
+
+			result += '</tbody></table></div>';
+		} else {
+			var result = '<div class="sub-morphology">Īstenības izteiksme:<br>';
+
+			for (var tense = 0; tense < tenses.length; tense++) {
+				result += '<div style="display:inline-block">';
+				result += formatVerbTenseTable(words, tenses[tense][LONG], true);
+				result += '</div>';
+			}
+			result += '</div>';
+		}
 
 		if (words['Pavēles-Vienskaitlis'] || words['Pavēles-Daudzskaitlis']) {
 			result += '<div class="sub-morphology">Pavēles izteiksme: <span class="sub-text">';
