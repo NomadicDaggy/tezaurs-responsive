@@ -858,16 +858,19 @@ span.inflection {
 @media all and (max-width: 768px) and (min-width: 500px) {
 	.header-col {
 		width: unset;
+		display: table-cell;
 	}
 
 	.logo {
 		width: 50%;
-		padding-right: 0;
+		padding-right: 5px;
 	}
 
 	#searchBar {
 		width: 50%;
 		margin-top: .17em;
+		vertical-align: middle;
+		padding-left: 0;
 	}
 
 	#searchResults {
