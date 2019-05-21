@@ -1,7 +1,7 @@
 var delta = 20;
 var debug = window.location.protocol == 'file:';
-var api_url = 'http://api.tezaurs.lv/v1';
-if (debug) api_url = 'http:/localhost:8182/v1';
+var api_url = 'https://api.tezaurs.lv/v1';
+if (debug) api_url = 'https:/localhost:8182/v1';
 
 function isEncodedURIComponent(arg) {
 	return decodeURIComponent(arg) !== arg;
@@ -159,7 +159,7 @@ function loadContent(doc, word) {
 			});
 
 			// Reset search results
-			$('#searchResults').load('http://tezaurs.lv/api/searchEntry?w=' + word + ' #doc', function() {
+			$('#searchResults').load('https://tezaurs.lv/api/searchEntry?w=' + word + ' #doc', function() {
 				if ($('#alternatives').length == 0) $('#exactMatch').hide();
 
 				$('.word').each(function() {
@@ -423,7 +423,7 @@ function loadContent(doc, word) {
 						comment: $('#feedbackText').val()
 					};
 
-					$.post('http://tezaurs.lv/api/feedback', formData, function() {
+					$.post('https://tezaurs.lv/api/feedback', formData, function() {
 						if ($('#feedbackText').val().trim()) {
 							$('#feedbackResponse')
 								.html('<span class="status-ok">Paldies!</span>')
@@ -549,11 +549,11 @@ $.address.change(function(event) {
 		if (w[0].charAt(0) == '?') {
 			w[0] = w[0].substring(1);
 			var word = !isEncodedURIComponent(w[0]) ? encodeURIComponent(w[0]) : w[0];
-			loadResults('http://tezaurs.lv/api/searchEntry?w=' + word);
+			loadResults('https://tezaurs.lv/api/searchEntry?w=' + word);
 		} else {
 			var word = !isEncodedURIComponent(w[0]) ? encodeURIComponent(w[0]) : w[0];
 			var query = 'hw=' + word + (w.length == 2 ? '&hom=' + w[1] : '');
-			loadContent('http://tezaurs.lv/api/retrieveEntry?' + query, word);
+			loadContent('https://tezaurs.lv/api/retrieveEntry?' + query, word);
 		}
 	} else if (event.value != '/') {
 		loadContent(event.value.substring(1) + '.html', null);
