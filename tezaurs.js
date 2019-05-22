@@ -3,6 +3,20 @@ var debug = window.location.protocol == 'file:';
 var api_url = 'https://api.tezaurs.lv/v1';
 if (debug) api_url = 'https:/localhost:8182/v1';
 
+function resizeMain() {
+	if ($(window).width() > 768) {
+		var min = $(window).height() - delta;
+
+		$('#searchResults').css('min-height', min);
+		$('#mainContent').css('min-height', min);
+		$('#sideNotes').css('min-height', min);
+	} else {
+		$('#searchResults').css('min-height', 'auto');
+		$('#mainContent').css('min-height', 'auto');
+		$('#sideNotes').css('min-height', 'auto');
+	}
+}
+
 function isEncodedURIComponent(arg) {
 	return decodeURIComponent(arg) !== arg;
 }
@@ -540,6 +554,15 @@ $(document).ready(function() {
 		$('.expand_SVG').attr('src', 'img/expand.png');
 		$('.collapse_SVG').attr('src', 'img/collapse.png');
 	}
+});
+
+$(window).load(function() {
+	delta = delta + $('#header').outerHeight() + $('#footer').outerHeight();
+	resizeMain();
+});
+
+$(window).resize(function() {
+	resizeMain();
 });
 
 $.address.change(function(event) {
