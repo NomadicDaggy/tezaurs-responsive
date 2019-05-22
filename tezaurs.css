@@ -765,6 +765,10 @@ span.inflection {
 		max-width: 235px;
 	}
 
+	#exactMatch {
+		display: none;
+	}
+
 	/* Entry */
 	#mainCol {
 		order: 1;
