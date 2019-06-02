@@ -1,7 +1,7 @@
 var delta = 20;
 var debug = window.location.protocol == 'file:';
 var api_url = 'https://api.tezaurs.lv/v1';
-if (debug) api_url = 'https:/localhost:8182/v1';
+if (debug) api_url = 'http:/localhost:8182/v1';
 
 function resizeMain() {
 	if ($(window).width() > 768) {
@@ -184,12 +184,9 @@ function loadContent(doc, word) {
 			});
 
 			// Additional services
-			$('.doc').append(
-				//'<div id="pronunciation"></div>' +
-				//'<div id="tts"></div>' +
-				'<div id="morphology"></div>'
-			);
-			$('#mainContent').append('<div id="examples"></div>');
+			$('.doc').append('<div id="morphology"></div>');
+			$('.doc').append('<div id="examples"></div>');
+			$('.doc').append('<div id="credits"></div>');
 
 			/*
             $.get('http://ezis.ailab.lv:8182/phonetic_transcriber/' + word + '?phoneme_set=ipa', function(data) {
@@ -205,7 +202,7 @@ function loadContent(doc, word) {
 				// TODO add 'pronunc' and 'vprefix'
             });
 
-            $.get('http://tezaurs.lv/api/pronounce.jsp?word=' + word, function(data) {
+            $.get('https://tezaurs.lv/api/pronounce.jsp?word=' + word, function(data) {
                 $('#tts').html(
                     '<audio controls="controls">' +
                         '<source src="' + data + '" type="audio/mpeg">' +
@@ -364,9 +361,11 @@ function loadContent(doc, word) {
 							example_html +
 							'</div>'
 					);
+
 					if ($(window).width() > 768) {
 						$('.sv_Section').css('font-size', $('.sv_Entry').css('font-size'));
 					}
+
 					$('.items', '#examples').hide();
 					$('#toggle_Examples').click(function() {
 						// TODO: jāvispārina kā atsevišķa f-cija
@@ -388,14 +387,43 @@ function loadContent(doc, word) {
 			});
 			// Examples - END
 
+			// Credits - BEGIN
+			if (decodeURIComponent(word) == 'tēzaurs') {
+				$('#credits').html(
+					'<div class="sv_Section"><span>Tēzaurs.lv autori: </span><img src="img/expand.svg" id="toggle_Credits" class="expand_SVG" width="14" height="14" alt="+"/></div>' +
+					'<div class="items"><table>'+
+					'<tr><td><div class="credits-item">Saturs:</div></td><td width="100%"><div class="credits-list">Andrejs Spektors</div></td></tr>' +
+					'<tr><td><div class="credits-item">Konsultācijas:</div></td><td width="100%"><div class="credits-list">Baiba Saulīte, Gunta Nešpore-Bērzkalne, Laura Rituma</div></td></tr>' +
+					'<tr><td><div class="credits-item">Izstrāde:</div></td><td width="100%"><div class="credits-list">Normunds Grūzītis, Lauma Pretkalniņa, Pēteris Paikens, Mikus Grasmanis, Artūrs Znotiņš, Dāgs Ādams Grīnbergs</div></td></tr>' +
+					'</table></div>'
+				);
+
+				$('.items', '#credits').hide();
+				$('#toggle_Credits').click(function() {
+					// TODO: jāvispārina kā atsevišķa f-cija
+					if ($('.items', '#credits').is(':hidden')) {
+						$('.items', '#credits').show();
+						$(this).attr('src', 'img/collapse.svg');
+						$(this).attr('class', 'collapse_SVG');
+						$(this).attr('alt', '-');
+					} else {
+						$('.items', '#credits').hide();
+						$(this).attr('src', 'img/expand.svg');
+						$(this).attr('class', 'expand_SVG');
+						$(this).attr('alt', '+');
+					}
+				});
+			}
+			// Credits - END
+
 			// Feedback form - BEGIN
 			$('#mainContent').append(
 				'<div class="toolbar">' +
 					'<form>' +
 					'<div>' +
-					'<input type="button" class="twitter-button" id="twitterButton" value="Dalīties"/>' +
-					'<div class="separator"></div>' +
 					'<input type="button" class="feedback-submit" id="feedbackButton" value="Ziņot"/>' +
+					'<div class="separator"></div>' +
+					'<input type="button" class="twitter-button" id="twitterButton" value="Dalīties"/>' +
 					'<div class="separator"></div>' +
 					'<span id="feedbackResponse" class="feedback-status"></span>' +
 					'</div>' +
